@@ -1,13 +1,13 @@
 # Administrative Division Extension Specification
 
 - **Title:** Administrative Division
-- **Identifier:** <https://fiboa.github.io/administrative-division-extension/v0.1.0/schema.yaml>
+- **Identifier:** <https://vecorel.github.io/administrative-division-extension/v0.1.0/schema.yaml>
 - **Property Name Prefix:** admin
 - **Extension Maturity Classification:** Proposal
 - **Owner**: @m-mohr
 
 This document explains the Administrative Division Extension to the
-[Field Boundaries for Agriculture (fiboa) Specification](https://github.com/fiboa/specification).
+[Vecorel specification](https://github.com/vecorel/specification).
 
 It defines administrative divisions on the country and subdivision level based on
 [ISO-3166](https://www.iso.org/iso-3166-country-codes.html).
@@ -19,11 +19,6 @@ It defines administrative divisions on the country and subdivision level based o
 - [Changelog](./CHANGELOG.md)
 
 ## Properties
-
-The properties in the table below can be used in these parts of fiboa documents:
-
-- [x] Collection
-- [x] Feature Properties
 
 | Property Name          | Type   | Description |
 | ---------------------- | ------ | ----------- |

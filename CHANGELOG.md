@@ -27,9 +27,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - ...
 
-## [v0.1.0] - 2024-03-01
+## [v0.1.0] - 2025-08-15
 
 - First release
 
-[Unreleased]: <https://github.com/fiboa/administrative-division-extension/compare/v0.1.0...main>
-[v0.1.0]: <https://github.com/fiboa/administrative-division-extension/tree/v0.1.0>
+This extension is based on the [fiboa administrative-division extension v0.1.0](https://github.com/fiboa/administrative-division-extension/).
+
+[Unreleased]: <https://github.com/vecorel/administrative-division-extension/compare/v0.1.0...main>
+[v0.1.0]: <https://github.com/vecorel/administrative-division-extension/tree/v0.1.0>
