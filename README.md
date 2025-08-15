@@ -1,7 +1,7 @@
 # Administrative Division Extension Specification
 
 - **Title:** Administrative Division
-- **Identifier:** <https://vecorel.github.io/administrative-division-extension/v0.1.0/schema.yaml>
+- **Identifier:** <https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml>
 - **Property Name Prefix:** admin
 - **Extension Maturity Classification:** Proposal
 - **Owner**: @m-mohr
