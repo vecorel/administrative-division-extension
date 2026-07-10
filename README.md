@@ -1,8 +1,8 @@
 # Administrative Division Extension Specification
 
 - **Title:** Administrative Division
-- **Identifier:** <https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml>
-- **Property Name Prefix:** admin
+- **Identifier:** <https://vecorel.org/administrative-division-extension/v0.2.0/schema.yaml>
+- **Property Name Prefix:** admin_
 - **Extension Maturity Classification:** Proposal
 - **Owner**: @m-mohr
 
@@ -22,8 +22,8 @@ It defines administrative divisions on the country and subdivision level based o
 
 | Property Name          | Type   | Description |
 | ---------------------- | ------ | ----------- |
-| admin:country_code     | string | **REQUIRED.** ISO 3166-1 alpha-2 country code (aka admin0). Two-letter country code for the country that contains the field. |
-| admin:subdivision_code | string | ISO 3166-2 codes for identifying the principal subdivisions (e.g., provinces or states) of a country (aka admin1) that contains the field. The feature only contains the second part of the ISO 3166-2 code to reduce redundancy. |
+| admin_country_code     | string | **REQUIRED.** ISO 3166-1 alpha-2 country code (aka admin0). Two-letter country code for the country that contains the field. |
+| admin_subdivision_code | string | ISO 3166-2 codes for identifying the principal subdivisions (e.g., provinces or states) of a country (aka admin1) that contains the field. The feature only contains the second part of the ISO 3166-2 code to reduce redundancy. |
 
 The codes can be found at:
 
@@ -35,9 +35,18 @@ Please note that for some countries subdivision codes are not available.
 ### Examples
 
 1. California, USA:
-   `admin:country_code` = `US` and `admin:subdivision_code` = `CA`
+   `admin_country_code` = `US` and `admin_subdivision_code` = `CA`
 2. Bavaria, Germany:
-   `admin:country_code` = `DE` and `admin:subdivision_code` = `BY`
+   `admin_country_code` = `DE` and `admin_subdivision_code` = `BY`
+
+### Why an underscore instead of a colon?
+
+Most Vecorel extensions prefix properties as `prefix:name`. This extension
+uses `admin_` instead: these columns are the most common choice for
+[hive-style partitioning](https://duckdb.org/docs/data/partitioning/hive_partitioning),
+and a colon is an illegal character in Windows file paths. Partition-aware
+readers also URL-encode the colon, surfacing ghost `admin%3A...` columns
+(see [#4](https://github.com/vecorel/administrative-division-extension/issues/4)).
 
 ## Contributing
 

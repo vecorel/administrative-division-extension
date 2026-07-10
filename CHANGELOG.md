@@ -13,7 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- ...
+- **Breaking:** Renamed `admin:country_code` to `admin_country_code` and
+  `admin:subdivision_code` to `admin_subdivision_code`. A colon is an illegal
+  character in Windows file paths, which broke hive-style partitioning on
+  these columns, and partition-aware readers surfaced URL-encoded ghost
+  columns. [#4](https://github.com/vecorel/administrative-division-extension/issues/4)
 
 ### Deprecated
 
