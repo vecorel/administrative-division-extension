@@ -76,8 +76,12 @@ were assigned — without them, source-native codes cannot be interpreted.
 
 ## Mapping Boundary Datasets
 
-Any boundary dataset can be joined into this scheme. Mappings for commonly
-used sources:
+Any boundary dataset can be joined into this scheme — the table below is
+informative guidance for commonly used sources, not a closed list. Data
+producers are free to use any other boundary dataset (or their own): populate
+whichever `_name`/`_code` properties the source supports and identify the
+dataset through the source properties above so consumers can interpret the
+codes.
 
 | Extension property     | [Overture Divisions](https://docs.overturemaps.org/guides/divisions/) | [FAO GAUL L2](https://data.apps.fao.org/catalog/dataset/gaul-2024) | [COD / fieldmaps.io](https://fieldmaps.io/) | [geoBoundaries](https://www.geoboundaries.org/) | [LSIB](https://geodata.state.gov/) |
 | ---------------------- | --- | --- | --- | --- | --- |
