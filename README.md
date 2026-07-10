@@ -30,11 +30,14 @@ At least one of `admin_country_code` or `admin_country_name` is
 **REQUIRED**. Providing `admin_country_code` is strongly recommended
 whenever the source can be mapped to ISO 3166-1. (The schema language
 cannot express this either/or constraint, so it is normative here but not
-enforced by schema validation.)
+enforced by schema validation.) This requirement may be satisfied at the
+collection level (as in the shipped GeoJSON example, where
+`admin_country_code` sits on the FeatureCollection) or at the feature
+level.
 
 | Property Name          | Type   | Description |
 | ---------------------- | ------ | ----------- |
-| admin_continent        | string | Continent that contains the feature. Recommended values follow the [FAO GAUL](https://data.apps.fao.org/catalog/dataset/gaul-2024) continent names: `Africa`, `Americas`, `Antarctica`, `Asia`, `Europe`, `Oceania`. |
+| admin_continent        | string | Continent that contains the feature. Recommended values follow the [FAO GAUL](https://data.apps.fao.org/catalog/dataset/gaul-2024) continent names: `Africa`, `America`, `Asia`, `Europe`, `Oceania` (GAUL 2024 uses the singular `America`, not `Americas`, and has no separate `Antarctica` value — Antarctica and Greenland are coded `--`). |
 | admin_country_code     | string | ISO 3166-1 alpha-2 country code (aka admin0). Always ISO — never a source-native code. |
 | admin_country_name     | string | Country name as given by the source dataset. |
 | admin_subdivision_code | string | Code for the principal subdivision (province, state; aka admin1). Use the second part of the [ISO 3166-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en) code (e.g. `CA` for `US-CA`) where defined; otherwise the source dataset's native code. |
@@ -80,19 +83,23 @@ used sources:
 | ---------------------- | --- | --- | --- | --- |
 | admin_continent        | — | `continent` | — | — |
 | admin_country_code     | `country` | via ISO3 → alpha-2 lookup | via ISO3 → alpha-2 lookup | via country lookup |
-| admin_country_name     | `names.primary` | `gaul0_name` | `admin0Name` | `country` |
-| admin_subdivision_code | `region` (part after `-`) | — | `admin1Pcode` | — |
-| admin_subdivision_name | `names.primary` | `gaul1_name` | `admin1Name` | — |
-| admin_level2_code      | — | `gaul2_code` | `admin2Pcode` | — |
-| admin_level2_name      | — | `gaul2_name` | `admin2Name` | — |
-| admin_level3_code      | — | — | `admin3Pcode` | — |
-| admin_level3_name      | — | — | `admin3Name` | — |
-| admin_level4_code      | — | — | `admin4Pcode` | — |
-| admin_level4_name      | — | — | `admin4Name` | — |
+| admin_country_name     | `names.primary` | `gaul0_name` | `ADM0_EN` | `country` |
+| admin_subdivision_code | `region` (part after `-`) | `gaul1_code` | `ADM1_PCODE` | — |
+| admin_subdivision_name | `names.primary` | `gaul1_name` | `ADM1_EN` | — |
+| admin_level2_code      | — | `gaul2_code` | `ADM2_PCODE` | — |
+| admin_level2_name      | — | `gaul2_name` | `ADM2_EN` | — |
+| admin_level3_code      | — | — | `ADM3_PCODE` | — |
+| admin_level3_name      | — | — | `ADM3_EN` | — |
+| admin_level4_code      | — | — | `ADM4_PCODE` | — |
+| admin_level4_name      | — | — | `ADM4_EN` | — |
 
 [GADM](https://gadm.org/) and [geoBoundaries](https://www.geoboundaries.org/)
 follow the same pattern (per-level names plus source-native codes) and map
 the same way.
+
+GAUL codes (`gaul0_code`, `gaul1_code`, `gaul2_code`) are stored as integers
+in the source dataset and must be cast to strings when populated into these
+(string-typed) properties.
 
 ### Examples
 
@@ -106,7 +113,7 @@ the same way.
    `admin_subdivision_name` = `Nakuru`, `admin_level2_name` = `Njoro`,
    with `admin_source_name` = `FAO GAUL L2`.
 
-### Why an underscore instead of a colon?
+## Why an underscore instead of a colon?
 
 Most Vecorel extensions prefix properties as `prefix:name`. This extension
 uses `admin_` instead: these columns are the most common choice for
