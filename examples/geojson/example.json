@@ -6,13 +6,21 @@
       "https://vecorel.org/administrative-division-extension/v0.2.0/schema.yaml"
     ]
   },
+  "admin_continent": "Europe",
   "admin_country_code": "DE",
+  "admin_country_name": "Germany",
+  "admin_source_name": "Overture Maps Divisions",
+  "admin_source_url": "https://docs.overturemaps.org/guides/divisions/",
+  "admin_source_version": "2026-05-20.0",
+  "admin_source_method": "spatial-join",
+  "admin_source_processing": "gpio add admin-divisions --dataset overture --levels country,region input.parquet output.parquet",
   "features": [
     {
       "id": "12324",
       "type": "Feature",
       "properties": {
         "admin_subdivision_code": "NW",
+        "admin_subdivision_name": "Nordrhein-Westfalen",
         "collection": "de_nrw"
       },
       "geometry": {
@@ -28,6 +36,7 @@
       "type": "Feature",
       "properties": {
         "admin_subdivision_code": "BY",
+        "admin_subdivision_name": "Bayern",
         "collection": "de_nrw"
       },
       "geometry": {
