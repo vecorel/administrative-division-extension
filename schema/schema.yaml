@@ -1,14 +1,58 @@
 $schema: https://vecorel.org/sdl/v0.2.0/schema.json
-required:
-  - admin_country_code
+collection:
+  admin_source_name: true
+  admin_source_url: true
+  admin_source_version: true
+  admin_source_method: true
+  admin_source_processing: true
 properties:
+  admin_continent:
+    type: string
+    minLength: 1
   admin_country_code:
     type: string
     minLength: 2
     maxLength: 2
     pattern: ^[A-Z]{2}$
+  admin_country_name:
+    type: string
+    minLength: 1
   admin_subdivision_code:
     type: string
     minLength: 1
-    maxLength: 3
-    pattern: ^[A-Z0-9]{1,3}$
+  admin_subdivision_name:
+    type: string
+    minLength: 1
+  admin_level2_code:
+    type: string
+    minLength: 1
+  admin_level2_name:
+    type: string
+    minLength: 1
+  admin_level3_code:
+    type: string
+    minLength: 1
+  admin_level3_name:
+    type: string
+    minLength: 1
+  admin_level4_code:
+    type: string
+    minLength: 1
+  admin_level4_name:
+    type: string
+    minLength: 1
+  admin_source_name:
+    type: string
+    minLength: 1
+  admin_source_url:
+    type: string
+    format: uri
+  admin_source_version:
+    type: string
+    minLength: 1
+  admin_source_method:
+    type: string
+    minLength: 1
+  admin_source_processing:
+    type: string
+    minLength: 1
