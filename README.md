@@ -79,27 +79,32 @@ were assigned — without them, source-native codes cannot be interpreted.
 Any boundary dataset can be joined into this scheme. Mappings for commonly
 used sources:
 
-| Extension property     | [Overture Divisions](https://docs.overturemaps.org/guides/divisions/) | [FAO GAUL L2](https://data.apps.fao.org/catalog/dataset/gaul-2024) | [COD / fieldmaps.io](https://fieldmaps.io/) | [LSIB](https://geodata.state.gov/) |
-| ---------------------- | --- | --- | --- | --- |
-| admin_continent        | — | `continent` | — | — |
-| admin_country_code     | `country` | via ISO3 → alpha-2 lookup | via ISO3 → alpha-2 lookup | via country lookup |
-| admin_country_name     | `names.primary` | `gaul0_name` | `ADM0_EN` | `country` |
-| admin_subdivision_code | `region` (part after `-`) | `gaul1_code` | `ADM1_PCODE` | — |
-| admin_subdivision_name | `names.primary` | `gaul1_name` | `ADM1_EN` | — |
-| admin_level2_code      | — | `gaul2_code` | `ADM2_PCODE` | — |
-| admin_level2_name      | — | `gaul2_name` | `ADM2_EN` | — |
-| admin_level3_code      | — | — | `ADM3_PCODE` | — |
-| admin_level3_name      | — | — | `ADM3_EN` | — |
-| admin_level4_code      | — | — | `ADM4_PCODE` | — |
-| admin_level4_name      | — | — | `ADM4_EN` | — |
+| Extension property     | [Overture Divisions](https://docs.overturemaps.org/guides/divisions/) | [FAO GAUL L2](https://data.apps.fao.org/catalog/dataset/gaul-2024) | [COD / fieldmaps.io](https://fieldmaps.io/) | [geoBoundaries](https://www.geoboundaries.org/) | [LSIB](https://geodata.state.gov/) |
+| ---------------------- | --- | --- | --- | --- | --- |
+| admin_continent        | — | `continent` | — | — | — |
+| admin_country_code     | `country` | via ISO3 → alpha-2 lookup | via ISO3 → alpha-2 lookup | `shapeGroup` via ISO3 → alpha-2 lookup | via country lookup |
+| admin_country_name     | `names.primary` | `gaul0_name` | `ADM0_EN` | `shapeName` (ADM0) | `country` |
+| admin_subdivision_code | `region` (part after `-`) | `gaul1_code` | `ADM1_PCODE` | `shapeISO` (part after `-`), else `shapeID` (ADM1) | — |
+| admin_subdivision_name | `names.primary` | `gaul1_name` | `ADM1_EN` | `shapeName` (ADM1) | — |
+| admin_level2_code      | — | `gaul2_code` | `ADM2_PCODE` | `shapeID` (ADM2) | — |
+| admin_level2_name      | — | `gaul2_name` | `ADM2_EN` | `shapeName` (ADM2) | — |
+| admin_level3_code      | — | — | `ADM3_PCODE` | `shapeID` (ADM3) | — |
+| admin_level3_name      | — | — | `ADM3_EN` | `shapeName` (ADM3) | — |
+| admin_level4_code      | — | — | `ADM4_PCODE` | `shapeID` (ADM4) | — |
+| admin_level4_name      | — | — | `ADM4_EN` | `shapeName` (ADM4) | — |
 
-[GADM](https://gadm.org/) and [geoBoundaries](https://www.geoboundaries.org/)
-follow the same pattern (per-level names plus source-native codes) and map
-the same way.
+[GADM](https://gadm.org/) follows the same pattern (per-level names plus
+source-native codes) and maps the same way.
 
 GAUL codes (`gaul0_code`, `gaul1_code`, `gaul2_code`) are stored as integers
 in the source dataset and must be cast to strings when populated into these
 (string-typed) properties.
+
+geoBoundaries publishes each administrative level as a separate file
+(ADM0–ADM5); the parenthetical ADM level above indicates which file each
+column comes from. Its `shapeISO` field carries full ISO 3166-2 codes at the
+ADM1 level (e.g. `LU-EC`) but is typically empty at deeper levels, where the
+stable `shapeID` serves as the source-native code.
 
 ### Examples
 
